@@ -229,7 +229,11 @@
                 "fr": "french.pdf",
                 "ge": "german.pdf"
             };
-            window.location.href = pdfLinks[lang];
+            if (lang === "en") {
+                window.open(pdfLinks[lang], "_blank"); // Ανοίγει το βίντεο σε νέο tab
+            } else {
+                window.location.href = pdfLinks[lang];
+            }
         }
     </script>
 </body>
