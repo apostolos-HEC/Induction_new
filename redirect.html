@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #005A9E;
+        }
+    </style>
+</head>
+<body>
+    <p class="message">Please complete the form before accessing the site.</p>
+    <button class="btn" onclick="openForm()">Go to Form</button>
+
+    <script>
+        function openForm() {
+            const formURL = "https://forms.office.com/Pages/ResponsePage.aspx?id=YOUR_FORM_ID";
+            window.open(formURL, "_blank");
+
+            // Έλεγχος μετά από 10 δευτερόλεπτα αν ο χρήστης ολοκλήρωσε τη φόρμα
+            setTimeout(() => {
+                if (confirm("Did you complete the form? Click OK to proceed.")) {
+                    window.location.href = "index.html";
+                }
+            }, 10000);
+        }
+    </script>
+</body>
+</html>
