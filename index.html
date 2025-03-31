@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hellenic Cables</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://raw.githubusercontent.com/apostolos-HEC/HEC_induction-instructions/main/hellenic_cables-003-1140x570.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Το modal παράθυρο που καλύπτει όλη την οθόνη */
+        .modal {
+            display: none; /* Αρχικά κρυφό */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 1); /* Λευκό background */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            color: #003366;
+        }
+
+        .modal p {
+            font-size: 16px;
+            color: #3399FF;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Εφέ fade-out */
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .modal.fade-out {
+            animation: fadeOut 1s forwards; /* Εφαρμόζει το fade-out για 1 δευτερόλεπτο */
+        }
+
+        /* Υπολοιπο στυλ */
+        .container {
+            width: 60%;
+            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .flags {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .flag {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .flag:hover {
+            transform: scale(1.1);
+        }
+
+        img {
+            width: 60px;
+            height: auto;
+        }
+
+        /* Προειδοποίηση όταν η συσκευή είναι σε portrait */
+        .portrait-warning {
+            display: none;
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rotate-button {
+            display: none;
+            margin-top: 15px;
+            padding: 15px 30px;
+            background-color: #050780;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .rotate-button:hover {
+            background-color: #ff2a00;
+        }
+
+        .rotate-gif {
+            display: none;
+            margin-top: 20px;
+            max-width: 150%;
+            height: auto;
+        }
+
+        @media (orientation: portrait) {
+            .container {
+                display: none;
+            }
+            .portrait-warning {
+                display: flex;
+            }
+            .rotate-button {
+                display: block;
+            }
+            .rotate-gif {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 80%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+
+            .flags img {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="modal" id="landscapeModal">
+        <div class="modal-content">
+            <h2>Welcome to FULGOR!</h2>
+            <p>Safety is number one priority</p>
+        </div>
+    </div>
+
+    <div class="portrait-warning">
+        <img class="rotate-gif" src="https://media.giphy.com/media/JOtdkVKp0q8tJ0DGyJ/giphy.gif" alt="Rotate Device">
+        <button class="rotate-button" onclick="alert('Please rotate your device!')">Please rotate your device to landscape mode to view the website correctly.</button>
+    </div>
+
+    <div class="container">
+        <h2>Please choose language!</h2>
+        <div class="flags">
+            <img class="flag" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg" alt="Greek" onclick="openPDF('gr')">
+            <img class="flag" src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" onclick="openPDF('en')">
+            <img class="flag" src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="French" onclick="openPDF('fr')">
+            <img class="flag" src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="German" onclick="openPDF('ge')">
+        </div>
+    </div>
+
+    <script>
+        // Προβολή του custom modal παραθύρου από την αρχή
+        window.onload = function() {
+            const modal = document.getElementById('landscapeModal');
+            modal.style.display = 'flex';
+
+            // Κλείσιμο του modal παραθύρου με fade out μετά από 2 δευτερόλεπτα
+            setTimeout(function() {
+                modal.classList.add('fade-out'); // Προσθέτουμε την κλάση fade-out
+                // Μετά την ολοκλήρωση του fade-out, το κάνουμε "κρυφό"
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                }, 1000); // Χρειάζεται 1 δευτερόλεπτο για το fade-out να τελειώσει
+            }, 2000); // 2000ms = 2 δευτερόλεπτα
+        };
+
+        function openPDF(lang) {
+            const pdfLinks = {
+                "gr": "greek.pdf",
+                "en": "english.pdf",
+                "fr": "french.pdf",
+                "ge": "german.pdf"
+            };
+            window.location.href = pdfLinks[lang];
+        }
+    </script>
+</body>
+</html>
