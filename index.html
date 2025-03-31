@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submission</title>
+    <title>Verification</title>
     <style>
         body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
         }
-        #redirect-button {
-            display: none;
-            margin-top: 20px;
+
+        .message {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .btn {
             padding: 10px 20px;
+            font-size: 16px;
             background-color: #0078D4;
             color: white;
             border: none;
             cursor: pointer;
-            font-size: 16px;
             border-radius: 5px;
         }
-        #redirect-button:hover {
+
+        .btn:hover {
             background-color: #005A9E;
         }
     </style>
-    <script>
-        function showRedirectButton() {
-            document.getElementById("redirect-button").style.display = "block";
-        }
-    </script>
 </head>
 <body>
+    <p class="message">Please complete the form before accessing the site.</p>
+    <button class="btn" onclick="openForm()">Go to Form</button>
 
-    <h2>Fill in the form to proceed</h2>
+    <script>
+        function openForm() {
+            const formURL = "https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__pK927NUNDNEVlIxNlVJNzBUSTUyRFlMODJGRUxSUS4u";
+            window.open(formURL, "_blank");
 
-    <!-- Ενσωματωμένη Microsoft Form -->
-    <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__pK927NUNDNEVlIxNlVJNzBUSTUyRFlMODJGRUxSUS4u" width="100%" height="500px" frameborder="0" onload="setTimeout(showRedirectButton, 5000)"></iframe>
-
-    <!-- Κουμπί για μετάβαση στο main.html -->
-    <button id="redirect-button" onclick="window.location.href='hec.html'">
-        Proceed to Main Site
-    </button>
-
+            // Έλεγχος μετά από 10 δευτερόλεπτα αν ο χρήστης ολοκλήρωσε τη φόρμα
+            setTimeout(() => {
+                if (confirm("Did you complete the form? Click OK to proceed.")) {
+                    window.location.href = "hec.html";
+                }
+            }, 10000);
+        }
+    </script>
 </body>
 </html>
